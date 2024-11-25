@@ -29,6 +29,7 @@ Based on AWS Cloud Quest Learning Experience
 
 
 ### 2. Choose Amazon Machine Image (AMI)
+The AMI provides the information required for launching an instance.
 
 - Select Amazon Linux 2 AMI
 
@@ -39,9 +40,10 @@ Based on AWS Cloud Quest Learning Experience
 
 
 ### 3. Choose Instance Type
+The Instance Type specifies the hardware of the host computer used for this instance. The instance types are grouped based on their compute, memory and storage capabilities.
 
 - Select t2.micro for free tier
-
+![aws1](https://github.com/user-attachments/assets/fba4a698-5c3a-41a0-bad1-38d949b487dd)
 - Specifications:
 
   - 1 vCPU
@@ -49,24 +51,40 @@ Based on AWS Cloud Quest Learning Experience
   - 1 GB RAM
 
   - Variable ECU (Elastic Compute Units)
+    
+- Key pair: Proceed without a keypair name (not recommended for irl scenarios, only suitable for lab environment)
+  Amazon EC2 uses public key cryptography to encrypt and decrypt login information. Public key cryprography uses a public key to encrypt a piece of data and the recipient uses the private key to decrypt the data. The public and private keys are known as key pair. 
+  
 
-- Perfect for learning and basic workloads
 
 
+### 4. Configure Instance Network Details
 
-### 4. Configure Instance Details
+- Network: Lab VPC
+  A Virtual Private Cloud resides in an AWS Region, but the Subnet resides within a single AZ (Availability Zone)
 
-- Network: Default VPC
+- Subnet: Choose the one which represents your desired Availability Zone! For this example, we need to choose Subnet 1 for the AZ us-east-1a
+  ![awsnetworksettings](https://github.com/user-attachments/assets/e7a287fe-a66d-40e7-b367-5e4bb36e25ad)
 
-- Subnet: Choose any available
 
 - Auto-assign Public IP: Enable
 
 - Keep other settings as default
 
 
+### 5. Configure a virtual Firewall
+  The Firewall settings on AWS are known as Security Groups. The Security Groups control the traffic for one or more instances. Rules can be added to a security group for it to allow traffic from its associated instances.
+  ![AWS  Security Group](https://github.com/user-attachments/assets/5787de86-c1ea-4b6e-8970-a1215a8a182e)
 
-### 5. Add Storage
+  
+  - Name the security group
+    
+  - Specify its characteristics in the description
+    
+  - Choose security group type (for this lab example, HTTP must be used)
+
+
+### 6. Add Storage
 
 - Default: 8 GB root volume
 
@@ -76,37 +94,18 @@ Based on AWS Cloud Quest Learning Experience
 
 
 
-### 6. Configure Security Group
+### 7. Advanced Details 
 
-```
+- Upload the user data file provided by the quest.
+  
 
-Inbound Rules:
+### 8. Review and Launch
+![awsinstancereview](https://github.com/user-attachments/assets/ade04569-9a79-482e-b598-ce6e227810d5)
 
-- SSH (Port 22) from My IP
-
-- HTTP (Port 80) from Anywhere
-
-- HTTPS (Port 443) from Anywhere
-
-
-
-Outbound Rules:
-
-- All traffic allowed (default)
-
-```
-
-
-
-### 7. Review and Launch
 
 - Review all configurations
 
 - Click "Launch"
-
-- Create or select key pair
-
-- Download key pair file (.pem)
 
 - Launch instance
 
